@@ -1,13 +1,13 @@
-# Instructions for ToDo App
+## Інструкції з використання
 
-## Docker Hub Repository
-The Docker image for this application is available on Docker Hub:
-[https://hub.docker.com/r/yur11lesyk/devops-todolist](https://hub.docker.com/r/yur11lesyk/devops-todolist)
+### Запуск додатку за допомогою Docker
 
-Replace `<your-dockerhub-username>` with your actual Docker Hub username.
+1. Побудуйте Docker-образ:
+   ```sh
+   docker build -t yur11lesyk/devops-todolist:1.1 .
 
-## Building the Docker Image
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:BlackYOSHl/devops_todolist.git
-   cd devops_todolist
+2. Запустіть контейнер
+   docker run -p 8080:8080 yur11lesyk/devops-todolist:1.1
+
+3. Відкрийте браузер за адресою:
+(http://localhost:8080)

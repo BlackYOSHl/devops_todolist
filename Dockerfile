@@ -1,4 +1,5 @@
-FROM python:3.8-slim
+# Stage 1: Build stage
+FROM python:3.8-slim AS builder
 
 ENV PYTHONUNBUFFERED=1
 
@@ -10,8 +11,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
 
-RUN python manage.py migrate
+# Stage 2: Run stage
+FROM python:3.8-slim
 
-EXPOSE 8000
+ENV PYTHONUNBUFFERED=1
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+WORKDIR /app
+
+COPY --from=builder /app /app
+
+EXPOSE 8080
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
